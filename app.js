@@ -1,6 +1,9 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const exphbs = require('express-handlebars')
+const Record = require('./models/record')
+const Category = require('./models/category')
+const dayjs = require('dayjs')
 
 const app = express()
 const port = 3000
@@ -19,7 +22,15 @@ app.engine('handlebars', exphbs({ default: 'main'}))
 app.set('view engine', 'handlebars')
 
 app.get('/', (req, res) => {
-  res.render('index')
+  Record.find()
+    .lean()
+    .then(records => {
+      records.forEach(record => {
+        record.date = dayjs(record.date).format('YYYY-MM-DD')
+      })
+      res.render('index', { records })
+    })
+    .catch(err => console.error(err))
 })
 
 app.listen(port, () => {

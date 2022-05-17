@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dayjs": "^1.11.2",
     "express": "^4.17.3",
     "express-handlebars": "^4.0.2",
     "mongoose": "^6.1.6"
