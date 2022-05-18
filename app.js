@@ -30,10 +30,12 @@ app.get('/', (req, res) => {
     .lean()
     .sort({ date: 'desc' })
     .then(records => {
+      let totalAmount = 0
       records.forEach(record => {
+        totalAmount += record.amount
         record.date = dayjs(record.date).format('YYYY-MM-DD')
       })
-      res.render('index', { records })
+      res.render('index', { records, totalAmount })
     })
     .catch(err => console.error(err))
 })
@@ -73,15 +75,7 @@ app.get('/records/:id/edit', (req, res) => {
 
 app.post('/records/:id/edit', (req, res) => {
   const id = req.params.id
-  const { name, categoryId, date, amount } = req.body
-  return Record.findById(id)
-    .then(record => {
-      record.name = name
-      record.categoryId = categoryId
-      record.amount = amount
-      record.date = date
-      record.save()
-    })
+  return Record.findByIdAndUpdate(id, req.body)
     .then(() => res.redirect('/'))
     .catch(err => console.log(err))
 })
