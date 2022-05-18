@@ -4,6 +4,7 @@ const exphbs = require('express-handlebars')
 const Record = require('./models/record')
 const Category = require('./models/category')
 const dayjs = require('dayjs')
+const bodyParser = require('body-parser')
 
 const app = express()
 const port = 3000
@@ -21,6 +22,8 @@ db.once('open', () => {
 app.engine('handlebars', exphbs({ default: 'main'}))
 app.set('view engine', 'handlebars')
 
+app.use(bodyParser.urlencoded({ extended: true }))
+
 app.get('/', (req, res) => {
   Record.find()
     .populate('categoryId')
@@ -32,6 +35,21 @@ app.get('/', (req, res) => {
       res.render('index', { records })
     })
     .catch(err => console.error(err))
+})
+
+app.get('/records/new', (req, res) => {
+  Category.find()
+    .lean()
+    .then(categories => {
+      res.render('new', { categories })
+    })
+})
+
+app.post('/records', (req, res) => {
+  const { name, categoryId, date, amount } = req.body
+  return Record.create(req.body)
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
 })
 
 app.listen(port, () => {

@@ -18,7 +18,7 @@ db.once('open', async () => {
       })
   }))
     .then(() => {
-      console.log('種子資料 載入結束')
+      console.log('"消費紀錄"的種子資料載入完畢')
       process.exit()
     })
     .catch(err => console.log(err))
