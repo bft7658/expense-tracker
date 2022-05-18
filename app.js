@@ -23,6 +23,7 @@ app.set('view engine', 'handlebars')
 
 app.get('/', (req, res) => {
   Record.find()
+    .populate('categoryId')
     .lean()
     .then(records => {
       records.forEach(record => {
