@@ -14,26 +14,26 @@
           <span class="text-danger">*</span>
           名稱：
         </label>
-        <input type="text" class="form-control mb-3" id="name" name="name" value="{{name}}" placeholder="請輸入名稱"
+        <input type="text" class="form-control mb-3" id="name" name="name" value="{{ name }}" placeholder="請輸入名稱"
           required>
 
         <label for="email" class="form-label text-end px-0 mb-1">
           <span class="text-danger">*</span>
           Email：
         </label>
-        <input type="email" class="form-control mb-3" id="email" name="email" value="{{email}}" placeholder="請輸入Email"
+        <input type="email" class="form-control mb-3" id="email" name="email" value="{{ email }}" placeholder="請輸入Email"
           required>
         <label for="password" class="form-label text-end px-0 mb-1">
           <span class="text-danger">*</span>
           密碼：
         </label>
-        <input type="password" class="form-control mb-3" id="password" name="password" value="{{password}}"
+        <input type="password" class="form-control mb-3" id="password" name="password" value="{{ password }}"
           placeholder="請輸入密碼" required>
         <label for="confirmPassword" class="form-label text-end px-0 mb-1"><span class="text-danger">*</span>
           確認密碼：
         </label>
         <input type="password" class="form-control mb-3" id="confirmPassword" name="confirmPassword"
-          value="{{confirmPassword}}" placeholder="再次輸入密碼" required>
+          value="{{ confirmPassword }}" placeholder="再次輸入密碼" required>
         <button type="submit" class="btn btn-warning d-block col-12 mx-auto my-3">註冊</button>
         <span>已經有帳號了？</span>
         <a href="/users/login">登入</a>

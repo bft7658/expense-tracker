@@ -8,14 +8,14 @@
     </span>
   </div>
 
-  <form action="/records/{{record._id}}?_method=PUT" method="POST" class="col-6 mx-auto mt-4">
+  <form action="/records/{{ record._id }}?_method=PUT" method="POST" class="col-6 mx-auto mt-4">
     <div class="mb-3 row mb-4">
       <label for="name" class="col-4 col-form-label text-end px-0">
         <span class=" text-danger">*</span>
         名稱：
       </label>
       <div class="col-8">
-        <input type="text" class="form-control" id="name" name="name" value="{{record.name}}" required>
+        <input type="text" class="form-control" id="name" name="name" value="{{ record.name }}" required>
       </div>
     </div>
 
@@ -25,7 +25,7 @@
         日期：
       </label>
       <div class="col-8">
-        <input type="date" class="form-control" id="date" name="date" value="{{record.date}}" required>
+        <input type="date" class="form-control" id="date" name="date" value="{{ record.date }}" required>
       </div>
     </div>
 
@@ -36,9 +36,9 @@
       </label>
       <div class="col-8">
         <select class="form-select" aria-label="Default select example" name="categoryId" required>
-          <option value={{record.categoryId._id}} selected>{{record.categoryId.name}}</option>
+          <option value={{ record.categoryId._id }} selected>{{ record.categoryId.name }}</option>
           {{#each categories}}
-          <option value="{{this._id}}">{{this.name}}</option>
+          <option value="{{ this._id }}">{{ this.name }}</option>
           {{/each}}
         </select>
       </div>
@@ -50,7 +50,7 @@
         金額：
       </label>
       <div class="col-8">
-        <input type="number" class="form-control" id="amount" name="amount" min="0" value="{{record.amount}}" required>
+        <input type="number" class="form-control" id="amount" name="amount" min="0" value="{{ record.amount }}" required>
       </div>
     </div>
 
