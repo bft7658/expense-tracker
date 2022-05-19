@@ -34,8 +34,8 @@ router.get('/:id/edit', (req, res) => {
       // 從 Category 拿出資料時，剔除掉 record 本身已經附加的類別，才不會出現兩個同樣的類別
       Category.find({ _id: { $ne: record.categoryId } })
         .lean()
-        .then(category => {
-          res.render('edit', { record, category })
+        .then(categories => {
+          res.render('edit', { record, categories })
         })
     })
     .catch(err => console.log(err))

@@ -1,0 +1,46 @@
+* {
+  box-sizing: border-box;
+}
+
+.index-content-block,
+.new-content-block {
+  max-width: 800px;
+  margin-top: 80px;
+}
+
+.totalAmount-number {
+  font-size: 2.5em;
+  color: orange;
+  font-weight: 400;
+}
+
+.totalAmount-text {
+  font-size: 1.5em;
+  color: #8f8f8f;
+  font-weight: 400;
+}
+
+
+.date-text {
+  color: #545454;
+}
+
+.divide-line {
+  border-top: 1px solid #dddddd;
+}
+
+.notes {
+  font-size: 14px;
+  color: #8c8c8c;
+}
+
+.record-icon {
+  color: #6b6b6b;
+  font-size: 36px;
+}
+
+.login-content-block {
+  width: 50%;
+  max-width: 600px;
+  margin-top: 50px;
+}

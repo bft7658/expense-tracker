@@ -1,52 +1,63 @@
-<div class="d-flex justify-content-center mt-4">
-  <span class="me-5">*必填欄位</span>
-  <span class="ms-4">請修改你的支出！</span>
-</div>
-<div class="d-flex justify-content-center mt-5">
-  <form action="/records/{{record._id}}?_method=PUT" method="POST">
-    <div class="row g-3 align-items-center mb-4">
-      <div class="col-auto">
-        <label for="record-name" class="col-form-label">名稱*：</label>
-      </div>
-      <div class="col-auto">
-        <input type="text" id="record-name" name="name" class="form-control" value="{{record.name}}"
-          aria-describedby="record name">
+<div class="new-content-block col-12 mx-auto">
+
+  <div class="title d-flex flex-row-reverse justify-content-center me-0">
+    <h4 class="text-center ">請修改你的支出</h4>
+    <span class="ms-0 me-4 notes">
+      <span class="text-danger p-0">*</span>
+      必填欄位
+    </span>
+  </div>
+
+  <form action="/records/{{record._id}}?_method=PUT" method="POST" class="col-6 mx-auto mt-4">
+    <div class="mb-3 row mb-4">
+      <label for="name" class="col-4 col-form-label text-end px-0">
+        <span class=" text-danger">*</span>
+        名稱：
+      </label>
+      <div class="col-8">
+        <input type="text" class="form-control" id="name" name="name" value="{{record.name}}" required>
       </div>
     </div>
-    <div class="row g-3 align-items-center mb-4">
-      <div class="col-auto">
-        <label for="record-category" class="col-form-label">類別*：</label>
+
+    <div class="mb-3 row mb-4">
+      <label for="date" class="col-4 col-form-label text-end px-0">
+        <span class=" text-danger">*</span>
+        日期：
+      </label>
+      <div class="col-8">
+        <input type="date" class="form-control" id="date" name="date" value="{{record.date}}" required>
       </div>
-      <div class="col-auto">
-        <select id="select-sort" class="form-select" name="categoryId">
+    </div>
+
+    <div class="mb-3 row mb-4">
+      <label for="category" class="col-4 col-form-label text-end px-0">
+        <span class="text-danger">*</span>
+        類別：
+      </label>
+      <div class="col-8">
+        <select class="form-select" aria-label="Default select example" name="categoryId" required>
           <option value={{record.categoryId._id}} selected>{{record.categoryId.name}}</option>
-          {{#each category}}
+          {{#each categories}}
           <option value="{{this._id}}">{{this.name}}</option>
           {{/each}}
         </select>
       </div>
     </div>
-    <div class="row g-3 align-items-center mb-4">
-      <div class="col-auto">
-        <label for="record-category" class="col-form-label">日期*：</label>
-      </div>
-      <div class="col-auto">
-        <input type="date" id="recordDate" name="date" value="{{record.date}}" class="form-control"
-          aria-describedby="record date">
-      </div>
-    </div>
-    <div class="row g-3 align-items-center mb-4">
-      <div class="col-auto">
-        <label for="record-amount" class="col-form-label">金額*：</label>
-      </div>
-      <div class="col-auto">
-        <input type="number" id="recordAmount" name="amount" value="{{record.amount}}" class="form-control"
-          aria-describedby="record amount">
+
+    <div class="mb-3 row mb-4">
+      <label for="amount" class="col-4 col-form-label text-end px-0">
+        <span class="text-danger">*</span>
+        金額：
+      </label>
+      <div class="col-8">
+        <input type="number" class="form-control" id="amount" name="amount" min="0" value="{{record.amount}}" required>
       </div>
     </div>
-    <div class="d-flex justify-content-around">
-      <button  type="submit" class="btn btn-success" id="submit-btn">編輯支出</button>
+
+    <div class="text-end">
+      <button type="submit" class="btn btn-success me-2" id="submit-btn">保存編輯</button>
       <a href="/" class="btn btn-primary">返回首頁</a>
     </div>
   </form>
+
 </div>
