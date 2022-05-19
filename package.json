@@ -17,6 +17,7 @@
     "dayjs": "^1.11.2",
     "express": "^4.17.3",
     "express-handlebars": "^4.0.2",
+    "method-override": "^3.0.0",
     "mongoose": "^6.1.6"
   }
 }

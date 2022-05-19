@@ -7,7 +7,7 @@
     {{this.date}}
     ${{this.amount}}
     <a href="./records/{{ this._id }}/edit">Edit</a>
-    <form action="./records/{{ this._id }}/delete" method="POST" style="display: inline;">
+    <form action="./records/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
       <button type="submit">delete</button>
     </form>
   </li>

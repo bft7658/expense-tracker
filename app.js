@@ -5,6 +5,7 @@ const Record = require('./models/record')
 const Category = require('./models/category')
 const dayjs = require('dayjs')
 const bodyParser = require('body-parser')
+const methodOverride = require('method-override') 
 
 const app = express()
 const port = 3000
@@ -23,6 +24,8 @@ app.engine('handlebars', exphbs({ default: 'main'}))
 app.set('view engine', 'handlebars')
 
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(methodOverride('_method'))
+
 
 app.get('/', (req, res) => {
   Record.find()
@@ -73,14 +76,14 @@ app.get('/records/:id/edit', (req, res) => {
     .catch(err => console.log(err))
 })
 
-app.post('/records/:id/edit', (req, res) => {
+app.put('/records/:id', (req, res) => {
   const id = req.params.id
   return Record.findByIdAndUpdate(id, req.body)
     .then(() => res.redirect('/'))
     .catch(err => console.log(err))
 })
 
-app.post('/records/:id/delete', (req, res) => {
+app.delete('/records/:id', (req, res) => {
   const id = req.params.id
   return Record.findById(id)
     .then(record => record.remove())
