@@ -15,10 +15,16 @@
 <body class="bg-light">
 <header>
   <nav class="navbar navbar-dark bg-secondary">
-    <div class="container-fluid col-11">
+    <div class="container-fluid col-12">
       <a href="/" class="navbar-brand h1 my-1">
-        家庭記帳本
+        {{#if isAuthenticated}}{{ user.name}} の{{/if}}
+        記帳本
       </a>
+      {{#if isAuthenticated}}
+      <a href="/users/logout" class="btn btn-outline-light">Logout</a>
+      {{else}}
+      <a href="/users/login" class="btn btn-outline-light">Login</a>
+      {{/if}}
     </div>
   </nav>
 </header>
