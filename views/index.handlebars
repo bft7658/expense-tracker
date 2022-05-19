@@ -1,8 +1,8 @@
 <div class="index-content-block col-12 mx-auto mt-5">
   {{!-- 搜尋區塊 --}}
 
-  <div class="totalAmount-block col-8 d-flex justify-content-around align-items-center mx-auto mt-5">
-    <h5 class="totalAmount-text">總支出:</h5>
+  <div class="totalAmount-block col-12 d-flex justify-content-evenly align-items-center mx-auto mt-5 bg-dark">
+    <span class="totalAmount-text">總支出：</span>
     <span class="totalAmount-number">{{totalAmount}} 元</span>
   </div>
   <div class="mt-4 mx-auto col-12 expense-list">
@@ -19,10 +19,10 @@
           <small><span class="date-text mt-0-0 p-0">{{this.date}}</span></small>
         </div>
 
-        <h5 class="amount ms-5 me-3 align-middle my-auto">{{this.amount}}</h5>
+        <h5 class="amount ms-5 me-3 align-middle my-auto">$ {{this.amount}}</h5>
 
         <div class="d-flex ">
-          <a href="./records/{{this._id}}/edit" class="btn btn-secondary d-block mx-1">編輯</a>
+          <a href="./records/{{this._id}}/edit" class="btn btn-primary d-block mx-1">編輯</a>
           <form action="./records/{{this._id}}?_method=delete" method="POST">
             <button class="btn btn-danger">刪除</button>
           </form>
