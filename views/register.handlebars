@@ -1,15 +1,15 @@
 <div class="login-content-block col-12 mx-auto mb-5">
   <div class="card">
     <div class="card-body mb-2">
-      <div class=" mt-2 col-7 mx-auto" style="border: px solid red;">
+      <div class=" mt-2 col-8 mx-auto" style="border: px solid red;">
         <h2 class="text-center">註冊</h2>
-        <span class="notes ms-auto text-end d-block mt-3">
+        <span class="notes ms-auto text-start d-block mb-4">
           <span class="text-danger">*</span>
           必填欄位
         </span>
       </div>
-
-      <form class=" mb-2 col-7 mx-auto" action="/users/register" method="post">
+      {{> message}}
+      <form class=" mb-2 col-8 mx-auto" action="/users/register" method="post">
         <label for="name" class="form-label text-end px-0 mb-1">
           <span class="text-danger">*</span>
           名稱：
