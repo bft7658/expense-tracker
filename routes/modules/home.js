@@ -5,7 +5,8 @@ const Record = require('../../models/record')
 const dayjs = require('dayjs')
 
 router.get('/', (req, res) => {
-  Record.find()
+  const userId = req.user._id
+  Record.find({ userId })
     .populate('categoryId')
     .lean()
     .sort({ date: 'desc' })

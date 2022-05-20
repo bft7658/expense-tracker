@@ -11,17 +11,17 @@
     {{#if records}}
     <ul class="list-group list-group-flush">
       {{#each records}}
-      <li class="list-group-item d-flex align-items-center justify-content-around">
+      <li class="list-group-item d-flex align-items-center justify-content-between">
         <i class="{{ this.categoryId.icon }} record-icon"></i>
 
-        <div class="ms-0 col-3 my-1 d-flex flex-column">
+        <div class="ms-0 col-4 my-1 d-flex flex-column justify-content-between">
           <h4 class="my-0 mb-0 align-baseline">{{ this.name }}</h4>
           <small><span class="date-text mt-0-0 p-0">{{ this.date }}</span></small>
         </div>
 
         <h5 class="amount ms-5 me-3 align-middle my-auto">$ {{ this.amount }}</h5>
 
-        <div class="d-flex ">
+        <div class="d-flex">
           <a href="./records/{{ this._id }}/edit" class="btn btn-primary d-block mx-1">編輯</a>
           <form action="./records/{{ this._id }}?_method=delete" method="POST">
             <button class="btn btn-danger">刪除</button>

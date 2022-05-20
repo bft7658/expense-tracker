@@ -18,6 +18,7 @@ router.get('/new', (req, res) => {
 
 // 送出新增資料
 router.post('/', (req, res) => {
+  req.body.userId = req.user._id
   return Record.create(req.body)
     .then(() => res.redirect('/'))
     .catch(err => console.log(err))
@@ -25,8 +26,9 @@ router.post('/', (req, res) => {
 
 // 進入編輯頁面
 router.get('/:id/edit', (req, res) => {
-  const id = req.params.id
-  return Record.findById(id)
+  const userId = req.user._id
+  const _id = req.params.id
+  return Record.findOne({ _id, userId })
     .populate('categoryId')
     .lean()
     .then(record => {
@@ -43,17 +45,18 @@ router.get('/:id/edit', (req, res) => {
 
 // 送出編輯資料
 router.put('/:id', (req, res) => {
-  const id = req.params.id
-  return Record.findByIdAndUpdate(id, req.body)
+  const userId = req.user._id
+  const _id = req.params.id
+  return Record.findOneAndUpdate({ _id, userId }, req.body)
     .then(() => res.redirect('/'))
     .catch(err => console.log(err))
 })
 
 // 刪除資料
 router.delete('/:id', (req, res) => {
-  const id = req.params.id
-  return Record.findById(id)
-    .then(record => record.remove())
+  const userId = req.user._id
+  const _id = req.params.id
+  return Record.findOneAndRemove({ _id, userId })
     .then(() => res.redirect('/'))
     .catch(err => console.log(err))
 })
