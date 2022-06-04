@@ -1,41 +1,39 @@
 <div class="index-content-block col-12 mx-auto mt-4">
   {{!-- 搜尋區塊 --}}
-  <form action="/records" class="container" >
+  <form action="/records" class="container">
     <div class="d-flex justify-content-center">
       <div class="filter col-md-3 col-lg-6 my-1">
-        {{!-- filter switch for category --}}
-        {{!-- <div class="input-group mb-3">
-          <label class="input-group-text bg-secondary text-light" for="filteredCategory">
+        {{!-- category select --}}
+        <div class="input-group mb-3">
+          <label class="input-group-text bg-secondary text-light" for="categoryOption">
             <i class="fa-solid fa-filter"></i>
           </label>
-          <select class="form-select" id="filteredCategory" name="filteredCategory">
-            <option value="{}" selected>篩 選 類 別...</option>
-            <option value='{"amount":"asc"}' {{#is sort '{"amount":"asc"}' }} selected {{/is}}>金額遞增</option>
-            <option value='{"amount":"desc"}' {{#is sort '{"amount":"desc"}' }} selected {{/is}}>金額遞減</option>
-            <option value='{"date":-1}' {{#is sort '{"date":-1}' }} selected {{/is}}>日期新到舊</option>
-            <option value='{"date":1}' {{#is sort '{"date":1}' }} selected {{/is}}>日期舊到新</option>
+          <select class="form-select" id="categorySelect" name="categoryOption">
+            {{#if selectedCategory}}
+              <option value="{{selectedCategory._id}}" selected>{{selectedCategory.name}}</option>
+              {{#each otherCategory}}
+              <option value="{{this._id}}">{{this.name}}</option>
+              {{/each}}
+            {{else}}
+              <option value="" selected>--- 篩選類別 ---</option>
+              {{#each categories}}
+              <option value="{{this._id}}">{{this.name}}</option>
+              {{/each}}
+            {{/if}}
           </select>
-        </div> --}}
+        </div>
         {{!-- sort select --}}
         <div class="input-group mb-3">
           <label class="input-group-text bg-secondary text-light" for="sort">
             <i class="fas fa-sort-amount-down"></i>
           </label>
           <select class="form-select" id="sort" name="sort">
-            <option value='{}' selected>排 序 方 式...</option>
+            <option value='{}' selected>--- 排序方式 ---</option>
             <option value='{"amount":"asc"}' {{#is sort '{"amount":"asc"}' }} selected {{/is}}>金額 低 → 高</option>
             <option value='{"amount":"desc"}' {{#is sort '{"amount":"desc"}' }} selected {{/is}}>金額 高 → 低</option>
             <option value='{"date":-1}' {{#is sort '{"date":-1}' }} selected {{/is}}>日期 新 → 舊</option>
             <option value='{"date":1}' {{#is sort '{"date":1}' }} selected {{/is}}>日期 舊 → 新</option>
           </select>
-        </div>
-        {{!-- search bar --}}
-        <div class="input-group mb-3">
-          <span class="input-group-text bg-secondary text-light" id="search-bar">
-            <i class="fas fa-magnifying-glass"></i>
-          </span>
-          <input type="text" class="form-control" name="keyword" placeholder="搜 尋 名 稱..." value="{{ keyword }}"
-            aria-label="keyword" aria-describedby="search-bar">
         </div>
         <div class="d-grid gap-2">
           <button type="submit" class="btn btn-secondary">Submit</button>
@@ -44,7 +42,7 @@
     </div>
   </form>
   <div class="text-center mt-3">
-    <a href="./records/new" class="btn btn-warning col-lg-4">新增支出</a>
+    <a href="./records/new" class="btn btn-primary col-lg-4">新增支出</a>
   </div>
 
   <div class="totalAmount-block col-12 d-flex justify-content-evenly align-items-center mx-auto mt-5 bg-dark">
@@ -80,5 +78,5 @@
     <div class="divide-line"></div>
     {{/if}}
   </div>
-  
+
 </div>

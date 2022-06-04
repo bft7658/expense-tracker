@@ -16,14 +16,14 @@
 <header>
   <nav class="navbar navbar-dark bg-secondary">
     <div class="container-fluid col-12">
-      <a href="/" class="navbar-brand h1 my-1">
+      <a href="/" class="navbar-brand h1 my-1 ms-4">
         {{#if isAuthenticated}}{{ user.name}} の{{/if}}
         記帳本
       </a>
       {{#if isAuthenticated}}
-      <a href="/users/logout" class="btn btn-outline-light">Logout</a>
+      <a href="/users/logout" class="btn btn-outline-light me-4">Logout</a>
       {{else}}
-      <a href="/users/login" class="btn btn-outline-light">Login</a>
+      <a href="/users/login" class="btn btn-outline-light me-4">Login</a>
       {{/if}}
     </div>
   </nav>

@@ -64,25 +64,48 @@ router.delete('/:id', (req, res) => {
 // 篩選資料
 router.get('/', (req, res) => {
   const userId = req.user._id
-  const { keyword, sort } = req.query
-  Record.find({ userId })
-    .populate('categoryId')
-    .lean()
-    .sort(JSON.parse(sort))
-    .then(records => {
-      if (keyword) {
-        records = records.filter(data =>
-          data.name.toLowerCase().includes(keyword.trim().toLowerCase())
-        )
-      }
-      let totalAmount = 0
-      records.forEach(record => {
-        totalAmount += record.amount
-        record.date = dayjs(record.date).format('YYYY-MM-DD')
+  const { categoryOption, sort } = req.query
+  if (categoryOption) {
+    Category.find({ _id: { $ne: categoryOption } })
+      .lean()
+      .then(otherCategory => {
+        Category.findById(categoryOption)
+          .lean()
+          .then(selectedCategory => {
+            return Record.find({ userId, categoryId: categoryOption })
+              .populate('categoryId')
+              .lean()
+              .sort(JSON.parse(sort))
+              .then(records => {
+                let totalAmount = 0
+                records.forEach(record => {
+                  totalAmount += record.amount
+                  record.date = dayjs(record.date).format('YYYY-MM-DD')
+                })
+                res.render('index', { records, totalAmount, sort, selectedCategory, otherCategory })
+              })
+              .catch(error => console.log(error))
+          })
       })
-      res.render('index', { records, keyword, sort, totalAmount })
-    })
-    .catch(error => console.log(error))
+  } else {
+    Category.find()
+      .lean()
+      .then(categories => {
+        Record.find({ userId })
+          .populate('categoryId')
+          .lean()
+          .sort(JSON.parse(sort))
+          .then(records => {
+            let totalAmount = 0
+            records.forEach(record => {
+              totalAmount += record.amount
+              record.date = dayjs(record.date).format('YYYY-MM-DD')
+            })
+            res.render('index', { records, sort, categories, totalAmount })
+          })
+          .catch(error => console.log(error))
+      })
+  }
 })
 
 module.exports = router
