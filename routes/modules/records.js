@@ -61,4 +61,28 @@ router.delete('/:id', (req, res) => {
     .catch(err => console.log(err))
 })
 
+// 篩選資料
+router.get('/', (req, res) => {
+  const userId = req.user._id
+  const { keyword, sort } = req.query
+  Record.find({ userId })
+    .populate('categoryId')
+    .lean()
+    .sort(JSON.parse(sort))
+    .then(records => {
+      if (keyword) {
+        records = records.filter(data =>
+          data.name.toLowerCase().includes(keyword.trim().toLowerCase())
+        )
+      }
+      let totalAmount = 0
+      records.forEach(record => {
+        totalAmount += record.amount
+        record.date = dayjs(record.date).format('YYYY-MM-DD')
+      })
+      res.render('index', { records, keyword, sort, totalAmount })
+    })
+    .catch(error => console.log(error))
+})
+
 module.exports = router
