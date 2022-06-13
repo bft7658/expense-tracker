@@ -3,8 +3,7 @@ const session = require('express-session')
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
-const hbshelpers = require('handlebars-helpers')
-const comparison = hbshelpers.comparison()
+const handlebarsHelpers = require('./helpers/handlebars-helpers')
 const flash = require('connect-flash')
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
@@ -17,7 +16,7 @@ const app = express()
 const port = 3000
 
 app.use(express.static('public'))
-app.engine('handlebars', exphbs({ defaultLayout: 'main', helpers: comparison }))
+app.engine('handlebars', exphbs({ defaultLayout: 'main', helpers: handlebarsHelpers }))
 app.set('view engine', 'handlebars')
 
 app.use(session({
