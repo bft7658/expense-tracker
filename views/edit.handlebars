@@ -15,7 +15,7 @@
         名稱：
       </label>
       <div class="col-8">
-        <input type="text" class="form-control" id="name" name="name" value="{{ record.name }}" required>
+        <input type="text" class="form-control" id="name" name="name" maxlength="10" value="{{ record.name }}" required>
       </div>
     </div>
 
@@ -50,7 +50,8 @@
         金額：
       </label>
       <div class="col-8">
-        <input type="number" class="form-control" id="amount" name="amount" min="0" value="{{ record.amount }}" required>
+        <input type="number" class="form-control" id="amount" name="amount" min="0" max="1000000"
+          value="{{ record.amount }}" required>
       </div>
     </div>
 

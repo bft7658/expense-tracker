@@ -3,6 +3,14 @@
   <form action="/filter" method="GET" class="container">
     <div class="d-flex justify-content-center">
       <div class="filter col-md-3 col-lg-6 my-1">
+        {{!-- month select --}}
+        <div class="input-group mb-3">
+          <label class="input-group-text bg-secondary text-light" for="month">
+            <i class="fa-solid fa-calendar"></i>
+          </label>
+          <input class="form-control d-inline-block" type="month" id="month" name="month" value="{{monthSelected}}"
+            onchange="submit()">
+        </div>
         {{!-- category select --}}
         <div class="input-group mb-3">
           <label class="input-group-text bg-secondary text-light" for="category">
@@ -25,7 +33,8 @@
             <option value='{}' selected>--- 排序方式 ---</option>
             <option value='{"amount":"desc"}' {{#ifCond sort '{"amount":"desc"}' }} selected {{/ifCond}}>金額 高 → 低
             </option>
-            <option value='{"amount":"asc"}' {{#ifCond sort '{"amount":"asc"}' }} selected {{/ifCond}}>金額 低 → 高</option>
+            <option value='{"amount":"asc"}' {{#ifCond sort '{"amount":"asc"}' }} selected {{/ifCond}}>金額 低 → 高
+            </option>
             <option value='{"date":-1}' {{#ifCond sort '{"date":-1}' }} selected {{/ifCond}}>日期 新 → 舊</option>
             <option value='{"date":1}' {{#ifCond sort '{"date":1}' }} selected {{/ifCond}}>日期 舊 → 新</option>
           </select>
@@ -54,9 +63,10 @@
         </div>
         <h5 class="amount ms-5 me-3 align-middle my-auto">$ {{ this.amount }}</h5>
         <div class="d-flex">
-          <a href="./records/{{ this._id }}/edit" class="btn btn-primary d-block mx-1">編輯</a>
+          <a href="./records/{{ this._id }}/edit" class="btn btn-outline-primary d-block mx-1">編輯</a>
           <form action="./records/{{ this._id }}?_method=delete" method="POST">
-            <button class="btn btn-danger">刪除</button>
+            <button type="submit" class="btn btn-outline-danger"
+              onclick="return confirm(`確定要刪除 {{ this.name }} 嗎？`)">刪除</button>
           </form>
         </div>
       </li>

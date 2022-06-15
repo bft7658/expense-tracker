@@ -1,32 +1,62 @@
 {
   "results": [
     {
+      "name": "加里山",
+      "date": "2022-06-30",
+      "amount": 1000,
+      "category": "交通出行"
+    },
+    {
+      "name": "AC Camp",
+      "date": "2021-11-25",
+      "amount": 3000,
+      "category": "其他"
+    },
+    {
+      "name": "漆彈",
+      "date": "2019-04-01",
+      "amount": 2000,
+      "category": "休閒娛樂"
+    },
+    {
       "name": "晚餐",
-      "date": "2019-4-23",
+      "date": "2019-04-25",
       "amount": 500,
       "category": "餐飲食品"
     },
     {
       "name": "午餐",
-      "date": "2019-4-23",
+      "date": "2019-04-23",
       "amount": 160,
       "category": "餐飲食品"
     },
     {
       "name": "捷運",
-      "date": "2019-4-23",
+      "date": "2019-04-23",
       "amount": 120,
       "category": "交通出行"
     },
     {
+      "name": "裝潢房間",
+      "date": "2019-04-22",
+      "amount": 4000,
+      "category": "家居物業"
+    },
+    {
       "name": "電影：鋼鐵人",
-      "date": "2019-4-23",
+      "date": "2019-04-10",
       "amount": 220,
       "category": "休閒娛樂"
     },
     {
+      "name": "投資",
+      "date": "2019-04-01",
+      "amount": 3000,
+      "category": "其他"
+    },
+    {
       "name": "租金",
-      "date": "2015-4-01",
+      "date": "2015-04-01",
       "amount": 19000,
       "category": "家居物業"
     }
