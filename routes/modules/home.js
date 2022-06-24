@@ -31,8 +31,12 @@ router.get('/filter', async (req, res) => {
   try {
     const categories = await Category.find().sort({ _id: 'asc' }).lean()
     const filterQuery = {
-      userId,
-      date: { $regex: monthSelected }
+      userId
+    }
+    if (monthSelected) {
+      const startDate = monthSelected + '-01'
+      const endDate = monthSelected + '-31'
+      filterQuery.date = { $gte: startDate, $lte: endDate }
     }
     if (categorySelected) filterQuery.categoryId = categorySelected
     const records = await Record.find(filterQuery)
